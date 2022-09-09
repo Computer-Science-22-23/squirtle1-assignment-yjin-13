@@ -43,9 +43,19 @@ public class SquirtleThing extends PokeThing {
 		stuck = !(nextLoc.isValid(getBoard()));
 		if (blocked || stuck)
 		{
-			setDirection(getDirection().right());
+			setDirection(getDirection().left());
+		}
+		if(getBoard().thingAt(nextLoc) instanceof PokeThing) {
+			Gui g = getBoard().getGui();
+			g.appendTextWindow("crushed");
+		}
+		
+		if(getBoard().thingAt(nextLoc) instanceof FlowerThing) {
+			Gui g = getBoard().getGui();
+			g.appendTextWindow("Flower!");
 		}
 				
 		move();
+		squaresMoved = squaresMoved + 1;
 	}
 }
